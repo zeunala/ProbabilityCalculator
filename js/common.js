@@ -27,16 +27,18 @@ const MathObj = {
         let countArr = [];
         let currentProbability = successRate ** wishCount;
         let probabilitySum = currentProbability; // 누적 확률
+        
         for (let i = 0; i <= 10000000; i++) {
-            if (countArr.length == 9) {
-                countArr.push(countArr[countArr.length - 1] * 2);
+            if (countArr.length == 10)
                 break;
-            }
 
             // 현재까지의 누적합이 지정조건 달성시 현재까지의 시행횟수를 배열에 담고 i 유지시켜 다시 반복
             if (nextSum <= probabilitySum) {
                 countArr.push(wishCount + i);
                 nextSum += 0.1;
+                if (countArr.length == 9) {
+                    nextSum = 0.99;
+                }
                 i -= 1;
                 continue;
             }
