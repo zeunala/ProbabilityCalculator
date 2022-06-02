@@ -75,7 +75,7 @@ const CalcObj = {
         if (document.getElementById("maxStackOption").checked)
         document.getElementById("expectSuccess").innerText = Math.ceil(
             (Math.max(parseInt(tryCount / maxStack) * maxStack, 0) * detailSuccessRate * successRate / (1 - (1 - successRate) ** maxStack)
-                + Math.min(tryCount, maxStack) * detailSuccessRate * successRate)
+                + Math.min(tryCount % maxStack, maxStack) * detailSuccessRate * successRate)
             * 1000) / 1000;
         else
             document.getElementById("expectSuccess").innerText = Math.ceil(tryCount * detailSuccessRate * successRate * 1000) / 1000;
